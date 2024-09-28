@@ -13,7 +13,6 @@ packaging==24.1
 requests==2.32.3
 urllib3==2.2.3
 Werkzeug==3.0.4
-pytesseract==0.3.13
 opencv-python-headless==4.5.4.60
 Pillow==10.0.1
 easyocr==1.6.2
