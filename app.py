@@ -2,7 +2,7 @@ import logging
 import socket
 from flask import request
 
-from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, bugp1, dodge_bullet
+from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, bugp1, dodge_bullet, clumsy
 from flask import Flask, request, jsonify
 
 
@@ -53,6 +53,11 @@ def dodge():
     data = str(request.data).split('\'')[1]
     data = data.replace("\\n", "\n")
     return dodge_bullet.solution(data)
+@app.route('/the-clumsy-programmer', methods=['POST'])
+def clumsy_result():
+    data = request.get_json()
+    return clumsy.solution(data)
+
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
