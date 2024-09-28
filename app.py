@@ -2,7 +2,7 @@ import logging
 import socket
 from flask import request
 
-from routes import app, digital_colony, kazuma
+from routes import app, digital_colony#, kazuma
 
 logger = logging.getLogger(__name__)
 
@@ -15,10 +15,10 @@ def give_result():
     data = request.get_json()
     return digital_colony.solution(data)
 
-@app.route('/efficient-hunter-kazuma', methods=['POST'])
-def give_result():
-    data = request.get_json()
-    return kazuma.solution(data)
+# @app.route('/efficient-hunter-kazuma', methods=['POST'])
+# def give_result():
+#     data = request.get_json()
+#     return kazuma.solution(data)
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
