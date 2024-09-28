@@ -2,12 +2,15 @@ import logging
 import socket
 from flask import request
 import json
+import easyocr
 
 # from routes import math_colony, solve_the_wordle, klotski, bugp2, bugp1, kazuma
 from routes import app, clumsy, sudoku#, dodge_bullet
 from flask import Flask, request, jsonify
 
 logger = logging.getLogger(__name__)
+
+reader = easyocr.Reader(['en'])
 
 @app.route('/', methods=['GET'])
 def default_route():
@@ -35,7 +38,7 @@ def default_route():
 @app.route('/sudoku', methods=['POST'])
 def solve_sudoku():
     data = request.get_json()
-    print(data)
+    # print(data)
     # return sudoku.solution(data)
     return json.dumps(sudoku.solution(data))
     # return {"answer": [[3, 2, 4, 1], [1, 4, 2, 3], [2, 3, 1, 4], [4, 1, 3, 2]], "sum": 12}

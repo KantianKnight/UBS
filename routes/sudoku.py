@@ -7,7 +7,7 @@ import easyocr
 from flask import jsonify
 from PIL import Image
 import io
-import easyocr
+import app
 
 def solution(data):
     # parsed_data = json.loads(data)
@@ -105,7 +105,8 @@ def solution(data):
     sudoku_array = []
 
     # Loop through each cell in the grid_sizexgrid_size grid
-    reader = easyocr.Reader(['en'])
+    # reader = easyocr.Reader(['en'])
+    reader = app.reader
     for row in range(grid_size):
         row_numbers = []
         for col in range(grid_size):
