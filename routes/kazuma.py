@@ -36,12 +36,12 @@ def solution(data):
             j = i
             while (dp[j-1][2] == dp[j-2][2] and j > 1):
                 j -= 1
-            # v1 = max(dp[j-1][2], dp[j-1][2] + m[i] - m[j-1])
+
             if j == i:
                 v1 = dp[j-1][0] + m[i] - m[j-1]
             else:
                 v1 = max(dp[j-1][0] + m[i] - m[j-1], 
-                        dp[j-1][2] + m[i] - query_tree(tree, 1, 0, n-1, j, i))
+                        dp[j-1][2] + m[i] - query_tree(tree, 1, 0, n-1, j, i-1))
 
             v2 = dp[i-1][2]
             dp.append((v1, v2, max(v1, v2)))
