@@ -2,7 +2,7 @@ import logging
 import socket
 from flask import request
 
-from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, bugp1, clumsy, dodge_bullet, sudoku
+from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, bugp1, clumsy, sudoku, dodge_bullet
 from flask import Flask, request, jsonify
 
 logger = logging.getLogger(__name__)

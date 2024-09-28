@@ -200,7 +200,6 @@ def solution(data):
     solved_sudoku = solve_sudoku(sudoku_array)
 
     # Calculate the Sum of the numbers in empty_cells
-    # "emptyCells":[{"x":1,"y":2},{"x":2,"y":0},{"x":3,"y":3},{"x":3,"y":1}]}
     sum = 0
     for empty_cell in empty_cells:
         row = empty_cell["y"]; col = empty_cell["x"]
