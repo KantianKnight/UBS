@@ -2,7 +2,7 @@ import numpy as np
 import json
 
 def calc_new_gen(weight, adj):
-    new_adj = np.zeros((10, 10))
+    new_adj = np.zeros((10, 10), dtype=int)
     new_weight = weight
 
     for i in range(10):
@@ -19,7 +19,7 @@ def solve(gens, number_str):
     numbers = np.array(list(map(int, number_str)))
 
     # Create adjacency list for adj[i][j] which counts the number of times i and j are adjacent, where i < j are digits in the colony
-    adj = np.zeros((10, 10))
+    adj = np.zeros((10, 10), dtype=int)
     for i in range(len(number_str) - 1):
         first, second = numbers[i], numbers[i + 1]
         adj[first][second] += 1
