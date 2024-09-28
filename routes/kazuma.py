@@ -40,6 +40,7 @@ def solution(data):
                 v1 = m[i] - query_tree(tree, 1, 0, n-1, 0, i-1)
             else:
                 if j > i-2:
+                    
                     v1 = max(dp[j-1][0] + m[i] - m[j-1],
                             dp[j-2][2] + m[i] - query_tree(tree, 1, 0, n-1, j, i-1))
                 else:
