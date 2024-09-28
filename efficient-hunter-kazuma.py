@@ -1,22 +1,27 @@
 import json
 
-# Take JSON data as input from the user
-data = input("Enter the JSON data: ")
+# data = input("Input: ")
 
-# Parse the JSON data
+data = json.dumps([
+    {
+      "monsters": [1,4,5,0,4]
+    }
+])
 parsed_data = json.loads(data)
-
-# Access the array under "monsters"
 monsters_array = parsed_data[0]["monsters"]
 
-print(monsters_array)
-
-# Example function that processes the monsters array
-def process_monsters(monsters):
+# MAIN
+def main(monsters):
     # Example: Calculate the sum of the monsters array
     return sum(monsters)
 
 # Process the monsters array
-result = process_monsters(monsters_array)
+efficiency = main(monsters_array)
 
-print("Processed result:", result)
+# Output the efficiency
+output_data = json.dumps([
+    {
+      "efficiency": efficiency
+    }
+])
+print(output_data)
