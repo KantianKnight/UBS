@@ -23,18 +23,17 @@ def solve(gens, number_str):
     while gens > 0:
         numbers = generate_new_gen(numbers)
         gens -= 1
-    return np.array2string(numbers, separator='')[1:-1].replace(' ', '')
+    return (np.sum(numbers)).item()
+
 
 #number_str = "123456789"
 def solution(request_json):
-    print(request_json  )
     requests = request_json
     sols = []
     for request in requests:
         generations = request["generations"]
         number_str = request["colony"]
         sols.append(solve(generations, number_str))
-
     return json.dumps(sols)
 
 
