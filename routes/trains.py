@@ -181,12 +181,16 @@ shortest_paths_dict = {
 # I will iterate through the stations and times and calculate the maximum points
 # I will use the shortest_paths_dict to get the time taken between the stations
 # I will use the points dictionary to get the points at each station
+# Some travel times may be floats, but only integers or integers + 0.5 are allowed
 points = {
     "Shibuya": 10, "Shinjuku-sanchome": 8, "Ginza": 7, "Tokyo": 9, "Ueno": 6,
     "Asakusa": 5, "Ikebukuro": 4, "Roppongi": 3, "Meguro": 2, "Otemachi": 1
 }
 
 def max_points(start_station, total_time):
+    # Convert total_time to half-minutes to handle 0.5 increments
+    total_time = int(total_time * 2)
+    
     # Initialize DP table
     dp = [[0] * (total_time + 1) for _ in range(num_stations)]
     start_idx = station_index[start_station]
@@ -202,6 +206,7 @@ def max_points(start_station, total_time):
             current_points = points.get(current_station, 0)
             for neighbor, travel_time in graph[current_station]:
                 neighbor_idx = station_index[neighbor]
+                travel_time = int(travel_time * 2)  # Convert travel time to half-minutes
                 if t >= travel_time:
                     dp[neighbor_idx][t] = max(dp[neighbor_idx][t], dp[i][t - travel_time] + current_points)
 
@@ -210,7 +215,7 @@ def max_points(start_station, total_time):
     for t in range(total_time + 1):
         max_points = max(max_points, dp[start_idx][t])
 
-    return max_points
+    return max_points / 2  # Convert back to original time units
 
 # Example usage
 start_station = "Shibuya"

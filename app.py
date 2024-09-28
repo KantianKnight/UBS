@@ -28,6 +28,7 @@ def give_result():
 def give_kazuma_result():
     data = request.get_json()
     result = kazuma.solution(data)
+    print(result)
     return jsonify(result)
 
 @app.route('/klotski', methods=['POST'])
