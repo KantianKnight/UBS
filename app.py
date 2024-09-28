@@ -2,7 +2,7 @@ import logging
 import socket
 from flask import request
 
-from routes import app, digital_colony, kazuma, solve_the_wordle, klotski, bugp2
+from routes import app, digital_colony, kazuma, solve_the_wordle, klotski, bugp2, dodge_bullet
 from flask import Flask, request, jsonify
 
 
@@ -40,6 +40,14 @@ def get_result():
 def bug_p2_result():
     data = request.get_json()
     return bugp2.solution(data)
+
+@app.route('/dodge', methods=['POST'])
+def dodge():
+    # data = ".dd\nr*.\n..."
+    # print(f"\n\n[DEBUG] request = {request.data}\n\n")
+    data = str(request.data).split('\'')[1]
+    data = data.replace("\\n", "\n")
+    return dodge_bullet.solution(data)
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
