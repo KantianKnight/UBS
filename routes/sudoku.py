@@ -9,7 +9,7 @@ from PIL import Image
 import io
 import easyocr
 
-def main(data):
+def solution(data):
     # parsed_data = json.loads(data)
     parsed_data = data
     id = parsed_data["id"]
@@ -90,10 +90,8 @@ def main(data):
         grid_size = 4
     elif grid_size > 13 and grid_size <= 25: # 18
         grid_size = 9
-    elif grid_size > 25:
-        grid_size = 16
     else:
-        raise ValueError("Unsupported grid size detected")
+        grid_size = 16
 
     print(f"Detected grid size: {grid_size}x{grid_size}")
 
@@ -218,10 +216,10 @@ def main(data):
     # print(output)
     return output
 
-def solution(data):
-    results = []
-    for i in range(len(data)):
-        sudokuI = data[i]
-        results.append(main(sudokuI))
-    print(results)
-    return results
+# def solution(data):
+#     results = []
+#     for i in range(len(data)):
+#         sudokuI = data[i]
+#         results.append(main(sudokuI))
+#     print(results)
+#     return results
