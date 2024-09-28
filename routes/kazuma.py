@@ -1,4 +1,5 @@
 import json
+from flask import request
 
 def solution(data):
     # data = json.dumps([
@@ -66,4 +67,5 @@ def solution(data):
     ])
     print(output_data)
 
-# solution()
+data = request.get_json()
+solution(data)
