@@ -3,14 +3,15 @@ import base64
 import gzip
 import cv2
 import numpy as np
-import easyocr
+# import easyocr
 from flask import jsonify
 from PIL import Image
 import io
 # import pytesseract
 # from keras.models import load_model
 import app
-# import pickle
+import pickle
+# Load the pre-trained easyocr reader from a pickle file
 
 # from flask import g
 # def get_easyocr_reader():
