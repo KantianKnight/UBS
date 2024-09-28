@@ -35,6 +35,7 @@ def solve_sudoku():
     data = request.get_json()
     # return sudoku.solution(data)
     return jsonify(sudoku.solution(data))
+    # return sudoku.solution(data)
 
 @app.route('/klotski', methods=['POST'])
 def get_result():
