@@ -40,17 +40,19 @@ def solution(data):
                 v1 = m[i] - query_tree(tree, 1, 0, n-1, 0, i-1)
             else:
                 if j > i-2:
-                    
+                    k = j-1
+                    while (dp[k-1][2] == dp[k-2][2]) and k > 1:
+                        k -= 1
                     v1 = max(dp[j-1][0] + m[i] - m[j-1],
-                            dp[j-2][2] + m[i] - query_tree(tree, 1, 0, n-1, j, i-1))
+                            dp[k-1][0] + m[i] - query_tree(tree, 1, 0, n-1, k+1, i-1))
                 else:
                     v1 = max(dp[j-1][0] + m[i] - m[j-1], 
-                            dp[j-1][0] + m[i] - query_tree(tree, 1, 0, n-1, j, i-1))
+                            dp[j-1][0] + m[i] - query_tree(tree, 1, 0, n-1, j+1, i-1))
 
             v2 = dp[i-1][2]
             dp.append((v1, v2, max(v1, v2)))
 
-        # print(dp)
+        print(dp)
         return dp[-1][2]
     
     results = []
