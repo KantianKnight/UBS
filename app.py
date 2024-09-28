@@ -8,20 +8,10 @@ import easyocr
 from routes import app, clumsy, sudoku#, dodge_bullet
 from flask import Flask, request, jsonify
 
-# from flask import g
-# def get_easyocr_reader():
-#     if 'reader' not in g:
-#         g.reader = easyocr.Reader(['en'])
-#     g.reader = easyocr.Reader(['en'], gpu=False)
-#     return g.reader
-
-reader = easyocr.Reader(['en'], recog_network='number', gpu=False)
-
 logger = logging.getLogger(__name__)
 
 @app.route('/', methods=['GET'])
 def default_route():
-    # get_easyocr_reader()
     return 'Python Template'
 
 # @app.route('/wordle-game', methods=['POST'])
@@ -46,7 +36,7 @@ def default_route():
 @app.route('/sudoku', methods=['POST'])
 def solve_sudoku():
     data = request.get_json()
-    print(data)
+    # print(data)
     # return sudoku.solution(data)
     return json.dumps(sudoku.solution(data))
     # return {"answer": [[3, 2, 4, 1], [1, 4, 2, 3], [2, 3, 1, 4], [4, 1, 3, 2]], "sum": 12}

@@ -7,8 +7,11 @@ import easyocr
 from flask import jsonify
 from PIL import Image
 import io
-import easyocr
-import app
+# import easyocr
+# import pytesseract
+# from keras.models import load_model
+# import app
+import pickle
 
 # from flask import g
 # def get_easyocr_reader():
@@ -43,7 +46,7 @@ def solution(data):
 
     # Open (decompressed_data + '.jpg') as an image
     sudokuBoard = Image.open(io.BytesIO(decompressed_data))
-    # sudokuBoard.show()
+    sudokuBoard.show()
 
     # Determine whether the sudoku board is 4x4, 9x9, or 16x16 using the borders
     # Convert the image to grayscale
@@ -118,7 +121,15 @@ def solution(data):
     # Loop through each cell in the grid_sizexgrid_size grid
     # reader = easyocr.Reader(['en'])
     # reader = get_easyocr_reader()
-    reader = app.reader
+    # reader = app.reader
+
+    with open('routes/easyocr_reader.pkl', 'rb') as f:
+        reader = pickle.load(f)
+
+    # Use a pre-trained deep learning model to extract the number from the cell
+    # For example, using a pre-trained digit recognition model from Keras
+    # They are in the same directory as the script
+    # model = load_model('routes/model.h5')
 
     for row in range(grid_size):
         row_numbers = []
@@ -144,9 +155,14 @@ def solution(data):
             # cv2.waitKey(0)  # Wait for a key press to close the window
             # cv2.destroyAllWindows()  # Close the window
 
-            # # Use pytesseract to extract the number from the cell
-            # custom_config = r'--oem 3 --psm 6 -c tessedit_char_whitelist=123456789 --dpi 50'
-            # extracted_text = pytesseract.image_to_string(cell, config=custom_config).strip()
+            # # Preprocess the cell image for the model
+            # number_roi = cv2.resize(cell, (28, 28), interpolation=cv2.INTER_AREA)
+            # number_roi = number_roi.astype('float32') / 255.0
+            # number_roi = np.expand_dims(number_roi, axis=-1)  # Add channel dimension (28, 28, 1)
+
+            # # Predict the digit using the model
+            # prediction = model.predict(np.expand_dims(number_roi, axis=0))
+            # extracted_text = str(np.argmax(prediction) + 1)  # Adding 1 to match the digit range 1-9
 
             # Use easyocr to extract the number from the cell
             result = reader.readtext(cell, detail=0, allowlist='123456789')
