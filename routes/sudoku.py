@@ -88,11 +88,11 @@ def solution(data):
             if np.pi / 4 < theta < 3 * np.pi / 4:
                 grid_size += 1
     # Determine the grid size based on the number of lines detected
-    if grid_size == 8:
+    if grid_size <= 13: # 8
         grid_size = 4
-    elif grid_size == 18:
+    elif grid_size > 13 and grid_size <= 25: # 18
         grid_size = 9
-    elif grid_size == 32:
+    elif grid_size > 25:
         grid_size = 16
     else:
         raise ValueError("Unsupported grid size detected")
