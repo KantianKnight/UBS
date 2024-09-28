@@ -8,12 +8,17 @@ import easyocr
 from routes import app, clumsy, sudoku#, dodge_bullet
 from flask import Flask, request, jsonify
 
-logger = logging.getLogger(__name__)
+from flask import g
+def get_easyocr_reader():
+    if 'reader' not in g:
+        g.reader = easyocr.Reader(['en'])
+    return g.reader
 
-reader = easyocr.Reader(['en'])
+logger = logging.getLogger(__name__)
 
 @app.route('/', methods=['GET'])
 def default_route():
+    get_easyocr_reader()
     return 'Python Template'
 
 # @app.route('/wordle-game', methods=['POST'])
