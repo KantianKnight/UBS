@@ -5,7 +5,6 @@ from flask import request
 from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, bugp1, dodge_bullet
 from flask import Flask, request, jsonify
 
-
 logger = logging.getLogger(__name__)
 
 @app.route('/', methods=['GET'])
@@ -31,11 +30,11 @@ def give_kazuma_result():
     print(result)
     return jsonify(result)
 
-
 @app.route('/klotski', methods=['POST'])
 def get_result():
     data = request.get_json()
     return klotski.solution(data)
+
 @app.route('/bugfixer/p1', methods=['POST'])
 def bug_p1_result():
     data = request.get_json()
@@ -48,10 +47,7 @@ def bug_p2_result():
 
 @app.route('/dodge', methods=['POST'])
 def dodge():
-    # data = ".dd\nr*.\n..."
-    # print(f"\n\n[DEBUG] request = {request.data}\n\n")
     data = str(request.data).split('\'')[1]
-    data = data.replace("\\n", "\n")
     return dodge_bullet.solution(data)
 
 logger = logging.getLogger()

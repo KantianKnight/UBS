@@ -44,7 +44,7 @@ def solution(request_json):
         number_str = request["colony"]
 
         sols.append(solve(generations, number_str))
-    print(json.dumps(sols))
+    # print(json.dumps(sols))
     return json.dumps(sols)
     # return sols
 
