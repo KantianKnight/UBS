@@ -1,17 +1,21 @@
 import logging
 import socket
+from flask import request
 
-from routes import app
+from routes import app, digital_colony
 
 logger = logging.getLogger(__name__)
 
+
 @app.route('/', methods=['GET'])
 def default_route():
-    return 'Python Template'
+    return 'Python da'
 
-## EDIT THIS
-@app.route('/', methods=['POST'])
-## kazuma.solution()
+@app.route('/digital_colony', methods=['POST'])
+def give_result():
+    data = request.get_json()
+    return digital_colony.solution(data)
+
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
