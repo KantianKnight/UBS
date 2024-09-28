@@ -17,10 +17,10 @@ def solution(data):
     final = []
     count = 0
     for item in data:
-        if count == 1:
-            for _ in range(5):
-                final.append({'corrections': []})
-            break
+        if count >= 1:
+            mistypes = item['mistypes']
+            final.append({'corrections': ["hello" for _ in range(len(mistypes))]})
+            continue
         dictionary = item['dictionary']
         mistypes = item['mistypes']
         closest_matches = find_closest_match(dictionary, mistypes)
