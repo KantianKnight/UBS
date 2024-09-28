@@ -10,6 +10,10 @@ incorrect_positions = {}
 num_incorrect_positions = 0
 correct_positions = []
 guessed_characters = {
+    0 : {
+        "correct" : [],
+        "incorrect" : []
+    },
     1 : {
         "correct" : [],
         "incorrect" : []
@@ -23,10 +27,6 @@ guessed_characters = {
         "incorrect" : []
     },
     4 : {
-        "correct" : [],
-        "incorrect" : []
-    },
-    5 : {
         "correct" : [],
         "incorrect" : []
     }
@@ -46,6 +46,7 @@ def update_knowledge(guess, evaluation):
             else:
                 incorrect_positions[char].append(i)
             num_incorrect_positions += 1
+            guessed_characters[i]["incorrect"].append(char)
         elif feedback == '-':
             avail_guesses = avail_guesses.replace(char, '')
             
@@ -70,7 +71,9 @@ def create_new_guess():
                     num_incorrect_positions -= 1
                     incorrect_positions.pop(key)
                 else:
-                    new_guess[index] = random.choice(avail_guesses)
+                    wrong_guesses_at_pos = guessed_characters[i]["incorrect"]
+                    new_avail_guesses = [char for char in avail_guesses if char not in wrong_guesses_at_pos]
+                    new_guess[index] = random.choice(new_avail_guesses)
             
     return ''.join(new_guess)
 

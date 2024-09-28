@@ -10,12 +10,10 @@ logger = logging.getLogger(__name__)
 
 @app.route('/', methods=['GET'])
 def default_route():
-    return 'Python da'
+    return 'Python Template'
 
 @app.route('/wordle-game', methods=['POST'])
 def wordle_game():
-    # data = request.json()
-    # print(data)
     data = request.json
     print(data)
     guess = solve_the_wordle.make_guess(data)
