@@ -1,13 +1,12 @@
 import json
 
-def solution():
+def solution(data):
     # data = json.dumps([
     #     {
     #     "monsters": [1,100,340,210,1,4,530]
     #     }
     # ])
 
-    data = input("Input: ")
     parsed_data = json.loads(data)
     monsters_array = parsed_data[0]["monsters"]
 
@@ -67,4 +66,4 @@ def solution():
     ])
     print(output_data)
 
-solution()
+# solution()
