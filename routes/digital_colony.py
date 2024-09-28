@@ -2,8 +2,8 @@ import numpy as np
 import json
 
 def generate_new_gen(number_list):
+    
     weight = sum(number_list)
-    print(weight)
     signatures = np.full(len(number_list)-1, weight)
     for i in range(len(number_list)-1):
         signatures[i] += (number_list[i]- number_list[i+1])%10
@@ -25,7 +25,7 @@ def solve(gens, number_str):
     return (np.sum(numbers)).item()
 
 
-# number_str = "123456789"
+#number_str = "123456789"
 def solution(request_json):
     requests = request_json
     sols = []
@@ -33,13 +33,14 @@ def solution(request_json):
         generations = request["generations"]
         number_str = request["colony"]
         sols.append(solve(generations, number_str))
-    # print(json.dumps(sols))
-    # return json.dumps(sols)
-    return sols
+    return json.dumps(sols)
 
 
-def main():
-    test_dict = [{ "generations": 10, "colony": "914" },{ "generations": 15, "colony": "1000" }]
-    print(solution(test_dict))
+# def main():
+#     test_dict = '[{ "generations": 5, "colony": "1000" },{ "generations": 10, "colony": "1000" }]'
+    
+    
+    
 
-main()
+#     print(solution(test_dict))
+
