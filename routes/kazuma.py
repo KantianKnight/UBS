@@ -1,4 +1,5 @@
 import json
+from flask import jsonify
 
 def solution(data):
     def main(m):
@@ -51,17 +52,17 @@ def solution(data):
         efficiency = main(monsters_array)
         results.append({"efficiency": efficiency})
 
-    output_data = json.dumps(results, indent=4)
+    # output_data = jsonify(results)
     # print(output_data)
-    return output_data
+    return results
 
 # Example Usage
 data = [
     {
-      "monsters": [1,4,5,0,4]
+      "monsters": [1]
     },
     {
       "monsters": [1,100,340,210,1,4,530]
     }
 ]
-print(solution(data))
+solution(data)

@@ -27,8 +27,8 @@ def give_result():
 @app.route('/efficient-hunter-kazuma', methods=['POST'])
 def give_kazuma_result():
     data = request.get_json()
-    return kazuma.solution(data)
-    # return jsonify(result)
+    result = kazuma.solution(data)
+    return jsonify(result)
 
 @app.route('/klotski', methods=['POST'])
 def get_result():

@@ -171,3 +171,48 @@ shortest_paths_dict = {
 
 # # Print the distance between 2 stations
 # print(shortest_paths_dict["Shibuya"]["Shinjuku-sanchome"])
+
+# Each station has a point value associated with it
+# I will create a dictionary with the station names as keys and the point values as values
+# I start at a given station and I need to end at that station
+# I have a given amount of time to travel between the stations
+# I will use dynamic programming to find the maximum points I can get
+# I will create a 2D array to store the maximum points at each station and time
+# I will iterate through the stations and times and calculate the maximum points
+# I will use the shortest_paths_dict to get the time taken between the stations
+# I will use the points dictionary to get the points at each station
+points = {
+    "Shibuya": 10, "Shinjuku-sanchome": 8, "Ginza": 7, "Tokyo": 9, "Ueno": 6,
+    "Asakusa": 5, "Ikebukuro": 4, "Roppongi": 3, "Meguro": 2, "Otemachi": 1
+}
+
+def max_points(start_station, total_time):
+    # Initialize DP table
+    dp = [[0] * (total_time + 1) for _ in range(num_stations)]
+    start_idx = station_index[start_station]
+
+    # Base case: starting station at time 0
+    for t in range(total_time + 1):
+        dp[start_idx][t] = points.get(start_station, 0)
+
+    # Fill DP table
+    for t in range(1, total_time + 1):
+        for i in range(num_stations):
+            current_station = stations[i]
+            current_points = points.get(current_station, 0)
+            for neighbor, travel_time in graph[current_station]:
+                neighbor_idx = station_index[neighbor]
+                if t >= travel_time:
+                    dp[neighbor_idx][t] = max(dp[neighbor_idx][t], dp[i][t - travel_time] + current_points)
+
+    # Find the maximum points we can get ending at the start station
+    max_points = 0
+    for t in range(total_time + 1):
+        max_points = max(max_points, dp[start_idx][t])
+
+    return max_points
+
+# Example usage
+start_station = "Shibuya"
+total_time = 10
+print(f"Maximum points starting and ending at {start_station} with {total_time} minutes: {max_points(start_station, total_time)}")
