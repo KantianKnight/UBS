@@ -6,7 +6,6 @@ from routes import app, digital_colony, kazuma
 
 logger = logging.getLogger(__name__)
 
-
 @app.route('/', methods=['GET'])
 def default_route():
     return 'Python da'

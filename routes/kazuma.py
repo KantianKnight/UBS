@@ -1,8 +1,8 @@
 import json
 
 def solution(data):
-    parsed_data = json.loads(data)
-    monsters_array = parsed_data[0]["monsters"]
+    # data = json.loads(data)
+    monsters_array = data[0]["monsters"]
 
     # MAIN
     def main(m):
@@ -60,10 +60,17 @@ def solution(data):
     ])
     print(output_data)
 
-# Example usage
-data = json.dumps([
+# # Example usage
+# data = json.dumps([
+#     {
+#     "monsters": [1, 100, 340, 210, 1, 4, 530]
+#     }
+# ])
+
+# Example Usage
+data = [
     {
-    "monsters": [1, 100, 340, 210, 1, 4, 530]
+      "monsters": [1,4,5,0,4]
     }
-])
+]
 solution(data)
