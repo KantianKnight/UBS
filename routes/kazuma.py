@@ -1,13 +1,6 @@
 import json
-from flask import request
 
 def solution(data):
-    # data = json.dumps([
-    #     {
-    #     "monsters": [1,100,340,210,1,4,530]
-    #     }
-    # ])
-
     parsed_data = json.loads(data)
     monsters_array = parsed_data[0]["monsters"]
 
@@ -67,5 +60,10 @@ def solution(data):
     ])
     print(output_data)
 
-data = request.get_json()
+# Example usage
+data = json.dumps([
+    {
+    "monsters": [1, 100, 340, 210, 1, 4, 530]
+    }
+])
 solution(data)
