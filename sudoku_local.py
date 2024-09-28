@@ -30,7 +30,6 @@ sudokuBoard.show()
 import pytesseract
 import cv2
 import numpy as np
-import easyocr
 
 # Convert the image to grayscale
 gray_image = cv2.cvtColor(np.array(sudokuBoard), cv2.COLOR_BGR2GRAY)
