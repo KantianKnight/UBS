@@ -10,7 +10,7 @@ import io
 # import keras_ocr
 import easyocr
 
-def solution(data):
+def main(data):
     # parsed_data = json.loads(data)
     parsed_data = data
     id = parsed_data["id"]
@@ -164,7 +164,7 @@ def solution(data):
 
     # Convert to numpy array and ensure it's grid_sizexgrid_size
     sudoku_array = np.array(sudoku_array).reshape((grid_size, grid_size))
-    # print(sudoku_array)
+    print(sudoku_array)
 
     # Now that I have the sudoku board as a grid_sizexgrid_size array, I can solve the puzzle using a backtracking algorithm.
     def is_valid_move(board, row, col, num):
@@ -218,3 +218,11 @@ def solution(data):
     
     print(output)
     return output
+
+def solution(data):
+    results = []
+    for i in range(len(data)):
+        sudokuI = data[i]
+        results.append(main(sudokuI))
+    print(results)
+    return results

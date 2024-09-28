@@ -63,6 +63,7 @@ def solution(data):
 
     # output_data = jsonify(results)
     # print(output_data)
+    print(results)
     return results
 
 # Example Usage
