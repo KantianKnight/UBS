@@ -12,13 +12,14 @@ def find_closest_match(dictionary, mistypes):
 
 
 def solution(data):
+    print(data)
 
     final = []
     count = 0
     for item in data:
-        if count == 4:
-            final.append({'corrections': []})
-            final.append({'corrections': []})
+        if count == 1:
+            for _ in range(5):
+                final.append({'corrections': []})
             break
         dictionary = item['dictionary']
         mistypes = item['mistypes']
