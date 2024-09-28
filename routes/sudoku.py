@@ -3,7 +3,7 @@ import base64
 import gzip
 import cv2
 import numpy as np
-import easyocr
+# import easyocr
 from flask import jsonify
 from PIL import Image
 import io
