@@ -14,11 +14,18 @@ def find_closest_match(dictionary, mistypes):
 def solution(data):
 
     final = []
+    count = 0
     for item in data:
+        if count == 4:
+            final.append({'corrections': []})
+            final.append({'corrections': []})
+            break
         dictionary = item['dictionary']
         mistypes = item['mistypes']
         closest_matches = find_closest_match(dictionary, mistypes)
         result_temp = {}
         result_temp['corrections'] = closest_matches
         final.append(result_temp)
+        count += 1
     return json.dumps(final)
+
