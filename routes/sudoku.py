@@ -1,13 +1,13 @@
-# import json
-# import base64
-# import gzip
-# import pytesseract
-# import cv2
-# import numpy as np
-# import easyocr
-# from flask import jsonify
-# from PIL import Image
-# import io
+
+import json
+import base64
+import gzip
+import pytesseract
+import cv2
+import numpy as np
+from flask import jsonify
+from PIL import Image
+import io
 
 # def solution(data):
 #     # parsed_data = json.loads(data)
