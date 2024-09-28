@@ -3,7 +3,7 @@ import socket
 from flask import request
 
 # from routes import math_colony, solve_the_wordle, klotski, bugp2, bugp1, kazuma
-from routes import app, clumsy, sudoku#, dodge_bullet
+from routes import app, clumsy, #sudoku#, dodge_bullet
 from flask import Flask, request, jsonify
 
 logger = logging.getLogger(__name__)
