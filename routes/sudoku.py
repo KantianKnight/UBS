@@ -3,11 +3,10 @@ import base64
 import gzip
 import cv2
 import numpy as np
-# import easyocr
+import easyocr
 from flask import jsonify
 from PIL import Image
 import io
-# import easyocr
 # import pytesseract
 # from keras.models import load_model
 # import app
@@ -123,6 +122,7 @@ def solution(data):
     # reader = get_easyocr_reader()
     # reader = app.reader
 
+    # Load the pre-trained easyocr reader from a pickle file
     with open('routes/easyocr_reader.pkl', 'rb') as f:
         reader = pickle.load(f)
 
