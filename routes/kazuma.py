@@ -34,19 +34,22 @@ def solution(data):
         dp = []; dp.append((0, 0, 0))
         for i in range(1, n):
             j = i
-            while (dp[j-1][2] == dp[j-2][2] and j > 1):
+            while (dp[j-1][2] == dp[j-2][2]) and j > 1:
                 j -= 1
-
-            if j == i:
-                v1 = dp[j-1][0] + m[i] - m[j-1]
+            if dp[j-1][2] == 0:
+                v1 = m[i] - query_tree(tree, 1, 0, n-1, 0, i-1)
             else:
-                v1 = max(dp[j-1][0] + m[i] - m[j-1], 
-                        dp[j-1][2] + m[i] - query_tree(tree, 1, 0, n-1, j, i-1))
+                if j > i-2:
+                    v1 = max(dp[j-1][0] + m[i] - m[j-1],
+                            dp[j-2][2] + m[i] - query_tree(tree, 1, 0, n-1, j, i-1))
+                else:
+                    v1 = max(dp[j-1][0] + m[i] - m[j-1], 
+                            dp[j-1][0] + m[i] - query_tree(tree, 1, 0, n-1, j, i-1))
 
             v2 = dp[i-1][2]
             dp.append((v1, v2, max(v1, v2)))
 
-        # print(dp)
+        print(dp)
         return dp[-1][2]
     
     results = []
@@ -62,10 +65,10 @@ def solution(data):
 # Example Usage
 data = [
     {
-      "monsters": [1]
+      "monsters": [1,100,340,210,1,4,530]
     },
     {
-      "monsters": [1,100,340,210,1,4,530]
+      "monsters": [15, 14, 7, 16, 19, 3, 12, 8, 5, 11, 13, 9, 2, 4, 6, 1, 18, 20, 17, 10]
     }
 ]
 solution(data)
