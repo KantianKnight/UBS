@@ -35,7 +35,6 @@ def get_result():
     data = request.get_json()
     return klotski.solution(data)
 
-
 logger = logging.getLogger()
 handler = logging.StreamHandler()
 formatter = logging.Formatter(

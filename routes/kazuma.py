@@ -1,10 +1,6 @@
 import json
 
 def solution(data):
-    # data = json.loads(data)
-    monsters_array = data[0]["monsters"]
-
-    # MAIN
     def main(m):
         # Implement segment tree to find minimum value in a range
         def build_tree(arr, tree, node, start, end):
@@ -48,16 +44,14 @@ def solution(data):
 
         # print(dp)
         return dp[-1][2]
+    
+    results = []
+    for i in range(len(data)):
+        monsters_array = data[i]["monsters"]
+        efficiency = main(monsters_array)
+        results.append({"efficiency": efficiency})
 
-    # Process the monsters array
-    efficiency = main(monsters_array)
-
-    # Output the efficiency
-    output_data = json.dumps([
-        {
-        "efficiency": efficiency
-        }
-    ])
+    output_data = json.dumps(results, indent=4)
     # print(output_data)
     return output_data
 
@@ -65,6 +59,9 @@ def solution(data):
 data = [
     {
       "monsters": [1,4,5,0,4]
+    },
+    {
+      "monsters": [1,100,340,210,1,4,530]
     }
 ]
-solution(data)
+print(solution(data))
