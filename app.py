@@ -2,9 +2,8 @@ import logging
 import socket
 from flask import request
 
-from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, sudoku
+from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, bugp1, sudoku, dodge_bullet, clumsy
 from flask import Flask, request, jsonify
-
 
 logger = logging.getLogger(__name__)
 
@@ -41,10 +40,25 @@ def get_result():
     data = request.get_json()
     return klotski.solution(data)
 
+@app.route('/bugfixer/p1', methods=['POST'])
+def bug_p1_result():
+    data = request.get_json()
+    return bugp1.solution(data)
+
 @app.route('/bugfixer/p2', methods=['POST'])
 def bug_p2_result():
     data = request.get_json()
     return bugp2.solution(data)
+
+@app.route('/dodge', methods=['POST'])
+def dodge():
+    data = str(request.data).split('\'')[1]
+    return dodge_bullet.solution(data)
+@app.route('/the-clumsy-programmer', methods=['POST'])
+def clumsy_result():
+    data = request.get_json()
+    return clumsy.solution(data)
+
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
