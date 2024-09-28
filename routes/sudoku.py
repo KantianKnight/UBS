@@ -4,7 +4,6 @@ import gzip
 import pytesseract
 import cv2
 import numpy as np
-import easyocr
 from flask import jsonify
 from PIL import Image
 import io
