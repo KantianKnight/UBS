@@ -58,15 +58,8 @@ def solution(data):
         "efficiency": efficiency
         }
     ])
-    print(output_data)
+    # print(output_data)
     return output_data
-
-# # Example usage
-# data = json.dumps([
-#     {
-#     "monsters": [1, 100, 340, 210, 1, 4, 530]
-#     }
-# ])
 
 # Example Usage
 data = [
