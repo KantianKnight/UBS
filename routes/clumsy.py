@@ -12,13 +12,13 @@ def find_closest_match(dictionary, mistypes):
 
 
 def solution(data):
-    results = {
-        "corrections":[]
-    }
+
+    final = []
     for item in data:
         dictionary = item['dictionary']
         mistypes = item['mistypes']
         closest_matches = find_closest_match(dictionary, mistypes)
-        results['corrections'] = (closest_matches)
-    return json.dumps([results])
-
+        result_temp = {}
+        result_temp['corrections'] = closest_matches
+        final.append(result_temp)
+    return json.dumps(final)
