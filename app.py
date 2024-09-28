@@ -2,7 +2,7 @@ import logging
 import socket
 from flask import request
 import json
-import easyocr
+# import easyocr
 
 # from routes import math_colony, solve_the_wordle, klotski, bugp2, bugp1, kazuma
 from routes import app, clumsy, sudoku#, dodge_bullet
