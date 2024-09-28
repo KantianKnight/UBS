@@ -1,17 +1,16 @@
 import logging
 import socket
+from flask import request
 
-from routes import app
+from routes import app, digital_colony, kazuma, solve_the_wordle
 from flask import Flask, request, jsonify
 
-import routes.solve_the_wordle as solve_the_wordle
 
 logger = logging.getLogger(__name__)
 
-
 @app.route('/', methods=['GET'])
 def default_route():
-    return 'Python Template'
+    return 'Python da'
 
 @app.route('/wordle-game', methods=['POST'])
 def wordle_game():
@@ -22,6 +21,15 @@ def wordle_game():
     guess = solve_the_wordle.make_guess(data)
     return jsonify({"guess": guess})
 
+@app.route('/digital-colony', methods=['POST'])
+def give_result():
+    data = request.get_json()
+    return digital_colony.solution(data)
+
+@app.route('/efficient-hunter-kazuma', methods=['POST'])
+def give_kazuma_result():
+    data = request.get_json()
+    return kazuma.solution(data)
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
