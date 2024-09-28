@@ -7,13 +7,14 @@ import easyocr
 from flask import jsonify
 from PIL import Image
 import io
-# import app
+import easyocr
 
-from flask import g
-def get_easyocr_reader():
-    if 'reader' not in g:
-        g.reader = easyocr.Reader(['en'])
-    return g.reader
+# from flask import g
+# def get_easyocr_reader():
+#     if 'reader' not in g:
+#         g.reader = easyocr.Reader(['en'])
+#     g.reader_only_numbers = easyocr.Reader(['en'], recog_network='number')
+#     return g.reader
 
 def solution(data):
     # parsed_data = json.loads(data)
@@ -115,7 +116,9 @@ def solution(data):
 
     # Loop through each cell in the grid_sizexgrid_size grid
     # reader = easyocr.Reader(['en'])
-    reader = get_easyocr_reader()
+    # reader = get_easyocr_reader()
+    reader = easyocr.Reader(['en'], recog_network='number', allowlist='123456789')
+
     for row in range(grid_size):
         row_numbers = []
         for col in range(grid_size):

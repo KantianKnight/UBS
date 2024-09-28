@@ -2,23 +2,24 @@ import logging
 import socket
 from flask import request
 import json
-import easyocr
+# import easyocr
 
 # from routes import math_colony, solve_the_wordle, klotski, bugp2, bugp1, kazuma
 from routes import app, clumsy, sudoku#, dodge_bullet
 from flask import Flask, request, jsonify
 
-from flask import g
-def get_easyocr_reader():
-    if 'reader' not in g:
-        g.reader = easyocr.Reader(['en'])
-    return g.reader
+# from flask import g
+# def get_easyocr_reader():
+#     if 'reader' not in g:
+#         g.reader = easyocr.Reader(['en'])
+#     g.reader = easyocr.Reader(['en'], gpu=False)
+#     return g.reader
 
 logger = logging.getLogger(__name__)
 
 @app.route('/', methods=['GET'])
 def default_route():
-    get_easyocr_reader()
+    # get_easyocr_reader()
     return 'Python Template'
 
 # @app.route('/wordle-game', methods=['POST'])
