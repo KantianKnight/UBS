@@ -1,3 +1,6 @@
+from collections import defaultdict
+import heapq
+
 subway_stations = {
     "Tokyo Metro Ginza Line": [
         "Asakusa", "Tawaramachi", "Inaricho", "Ueno", "Ueno-hirokoji", "Suehirocho",
@@ -106,21 +109,65 @@ times = {
     "Toei Oedo Line": 1
 }
 
-def solution(data):
-    print('hi')
-    
-# Example Usage
-data = {
-    "locations": {
-        "Yoyogi-uehara": [0, 0],
-        "Meiji-jingumae": [12, 35],
-        "Oji": [12, 30],
-        "Takebashi": [15, 25],
-        "Tameike-sanno": [45, 20],
-        "Shimbashi": [13, 35],
-        "Minami-asagaya": [22, 15]
-    },
-    "startingPoint": "Yoyogi-uehara",
-    "timeLimit": 480
+# I want to create a graph with the stations as nodes and the time taken between them as the edge weight
+# For every liine in times, I want to iterate through the stations and add the edge between the current station and the next station
+# I will use the times dictionary to get the time taken between the stations
+# Create the graph below
+graph = defaultdict(list)
+
+for line, stations in subway_stations.items():
+    time = times[line]
+    for i in range(len(stations) - 1):
+        graph[stations[i]].append((stations[i + 1], time))
+        graph[stations[i + 1]].append((stations[i], time))
+
+# # Example of how to print the graph
+# for station, connections in graph.items():
+#     print(f"{station}: {connections}")
+
+# Use an all-pairs shortest path algorithm between stations and save them in a dictionary
+# I will use the graph created above to find the shortest path between two stations
+# I will use the heapq module to implement the priority queue
+def dijkstra(graph, start):
+    queue = [(0, start)]
+    distances = {start: 0}
+    while queue:
+        current_distance, current_station = heapq.heappop(queue)
+        if current_distance > distances[current_station]:
+            continue
+        for neighbor, weight in graph[current_station]:
+            distance = current_distance + weight
+            if distance < distances.get(neighbor, float('inf')):
+                distances[neighbor] = distance
+                heapq.heappush(queue, (distance, neighbor))
+    return distances
+
+# Create a 2D array to store all the shortest path values
+stations = list(graph.keys())
+num_stations = len(stations)
+shortest_paths_matrix = [[float('inf')] * num_stations for _ in range(num_stations)]
+
+# Create a mapping from station name to index
+station_index = {station: idx for idx, station in enumerate(stations)}
+
+# Fill the 2D array with the shortest path values
+for i, station in enumerate(stations):
+    distances = dijkstra(graph, station)
+    for destination, distance in distances.items():
+        j = station_index[destination]
+        shortest_paths_matrix[i][j] = distance
+
+# Convert the 2D array to a dictionary with station names as keys
+shortest_paths_dict = {
+    station: {stations[j]: shortest_paths_matrix[i][j] for j in range(num_stations)}
+    for i, station in enumerate(stations)
 }
-solution(data)
+
+# # Example of how to print the shortest paths
+# for station, paths in shortest_paths_dict.items():
+#     print(f"From {station}:")
+#     for destination, distance in paths.items():
+#         print(f"  to {destination}: {distance} minutes")
+
+# # Print the distance between 2 stations
+# print(shortest_paths_dict["Shibuya"]["Shinjuku-sanchome"])
