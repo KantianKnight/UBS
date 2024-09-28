@@ -59,6 +59,7 @@ def solution(data):
         }
     ])
     print(output_data)
+    return output_data
 
 # # Example usage
 # data = json.dumps([
