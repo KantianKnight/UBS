@@ -117,7 +117,7 @@ def solution(data):
     # Loop through each cell in the grid_sizexgrid_size grid
     # reader = easyocr.Reader(['en'])
     # reader = get_easyocr_reader()
-    reader = easyocr.Reader(['en'], recog_network='number', allowlist='123456789')
+    reader = easyocr.Reader(['en'], recog_network='number')
 
     for row in range(grid_size):
         row_numbers = []
