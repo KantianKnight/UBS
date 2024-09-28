@@ -11,17 +11,17 @@ logger = logging.getLogger(__name__)
 def default_route():
     return 'Python Template'
 
-@app.route('/wordle-game', methods=['POST'])
-def wordle_game():
-    data = request.json
-    print(data)
-    guess = solve_the_wordle.make_guess(data)
-    return jsonify({"guess": guess})
+# @app.route('/wordle-game', methods=['POST'])
+# def wordle_game():
+#     data = request.json
+#     print(data)
+#     guess = solve_the_wordle.make_guess(data)
+#     return jsonify({"guess": guess})
 
-@app.route('/digital-colony', methods=['POST'])
-def give_result():
-    data = request.get_json()
-    return math_colony.solution(data)
+# @app.route('/digital-colony', methods=['POST'])
+# def give_result():
+#     data = request.get_json()
+#     return math_colony.solution(data)
 
 @app.route('/efficient-hunter-kazuma', methods=['POST'])
 def give_kazuma_result():
@@ -37,31 +37,30 @@ def solve_sudoku():
     return jsonify(sudoku.solution(data))
     # return sudoku.solution(data)
 
-@app.route('/klotski', methods=['POST'])
-def get_result():
-    data = request.get_json()
-    return klotski.solution(data)
+# @app.route('/klotski', methods=['POST'])
+# def get_result():
+#     data = request.get_json()
+#     return klotski.solution(data)
 
-@app.route('/bugfixer/p1', methods=['POST'])
-def bug_p1_result():
-    data = request.get_json()
-    return bugp1.solution(data)
+# @app.route('/bugfixer/p1', methods=['POST'])
+# def bug_p1_result():
+#     data = request.get_json()
+#     return bugp1.solution(data)
 
-@app.route('/bugfixer/p2', methods=['POST'])
-def bug_p2_result():
-    data = request.get_json()
-    return bugp2.solution(data)
+# @app.route('/bugfixer/p2', methods=['POST'])
+# def bug_p2_result():
+#     data = request.get_json()
+#     return bugp2.solution(data)
 
-@app.route('/dodge', methods=['POST'])
-def dodge():
-    data = str(request.data).split('\'')[1]
-    return dodge_bullet.solution(data)
+# @app.route('/dodge', methods=['POST'])
+# def dodge():
+#     data = str(request.data).split('\'')[1]
+#     return dodge_bullet.solution(data)
 
 @app.route('/the-clumsy-programmer', methods=['POST'])
 def clumsy_result():
     data = request.get_json()
     return clumsy.solution(data)
-
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
