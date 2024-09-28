@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 def default_route():
     return 'Python da'
 
-@app.route('/digital_colony', methods=['POST'])
+@app.route('/digital-colony', methods=['POST'])
 def give_result():
     data = request.get_json()
     return digital_colony.solution(data)
