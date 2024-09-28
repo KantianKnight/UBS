@@ -8,8 +8,11 @@ idna==3.10
 itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
-numpy==2.1.1
+numpy==1.8.0
 packaging==24.1
 requests==2.32.3
 urllib3==2.2.3
 Werkzeug==3.0.4
+pytesseract==0.3.13
+opencv-python-headless==4.8.1.78
+Pillow==10.0.1

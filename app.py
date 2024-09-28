@@ -2,7 +2,7 @@ import logging
 import socket
 from flask import request
 
-from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, bugp1, clumsy, dodge_bullet
+from routes import app, math_colony, kazuma, solve_the_wordle, klotski, bugp2, bugp1, clumsy, dodge_bullet, sudoku
 from flask import Flask, request, jsonify
 
 logger = logging.getLogger(__name__)
@@ -27,8 +27,13 @@ def give_result():
 def give_kazuma_result():
     data = request.get_json()
     result = kazuma.solution(data)
-    print(result)
+    # print(result)
     return jsonify(result)
+
+@app.route('/sudoku', methods=['POST'])
+def solve_sudoku():
+    data = request.get_json()
+    return sudoku.solution(data)
 
 @app.route('/klotski', methods=['POST'])
 def get_result():
