@@ -5,11 +5,13 @@ from routes import app
 
 logger = logging.getLogger(__name__)
 
-
 @app.route('/', methods=['GET'])
 def default_route():
     return 'Python Template'
 
+## EDIT THIS
+@app.route('/', methods=['POST'])
+## kazuma.solution()
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
