@@ -49,7 +49,7 @@ def solution(data):
             v2 = dp[i-1][2]
             dp.append((v1, v2, max(v1, v2)))
 
-        print(dp)
+        # print(dp)
         return dp[-1][2]
     
     results = []
