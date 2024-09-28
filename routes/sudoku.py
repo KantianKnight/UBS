@@ -1,7 +1,6 @@
 import json
 import base64
 import gzip
-import pytesseract
 import cv2
 import numpy as np
 import easyocr
