@@ -34,6 +34,60 @@ def solution(data):
     sudokuBoard = Image.open(io.BytesIO(decompressed_data))
     # sudokuBoard.show()
 
+    # Determine whether the sudoku board is 4x4, 9x9, or 16x16 using the borders
+    width, height = sudokuBoard.size
+    if width == height:
+        # Convert the image to grayscale
+        gray_image = cv2.cvtColor(np.array(sudokuBoard), cv2.COLOR_BGR2GRAY)
+        
+        # Apply adaptive thresholding to get a binary image
+        thresh_image = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2)
+        
+        # Find contours in the thresholded image
+        contours, _ = cv2.findContours(thresh_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        
+        # Filter out small contours that are likely noise
+        contours = [cnt for cnt in contours if cv2.contourArea(cnt) > 100]
+        
+        # Sort contours by area in descending order
+        contours = sorted(contours, key=cv2.contourArea, reverse=True)
+        
+        # Assume the largest contour is the outer border of the sudoku board
+        if contours:
+            largest_contour = contours[0]
+            x, y, w, h = cv2.boundingRect(largest_contour)
+            
+            # Determine the size of the board based on the boundaries between cells
+            def find_grid_size(contour):
+                peri = cv2.arcLength(contour, True)
+                approx = cv2.approxPolyDP(contour, 0.02 * peri, True)
+                if len(approx) == 4:
+                    x, y, w, h = cv2.boundingRect(approx)
+                    return w, h
+                return None, None
+
+            w, h = find_grid_size(largest_contour)
+            if w is None or h is None:
+                raise ValueError("Could not determine the grid size from the contour")
+
+            # Check for possible grid sizes
+            possible_sizes = [4, 9, 16]
+            grid_size = None
+            for size in possible_sizes:
+                if w % size == 0 and h % size == 0:
+                    grid_size = size
+                    break
+
+            if grid_size is None:
+                raise ValueError("Bounding rectangle dimensions do not correspond to a valid grid size (4x4, 9x9, 16x16)")
+
+            # Update cell size based on the determined grid size
+            cell_size = w // grid_size
+        else:
+            raise ValueError("No contours found")
+    else:
+        raise ValueError("Image is not square")
+
     # Image Preprocessing
     gray_image = cv2.cvtColor(np.array(sudokuBoard), cv2.COLOR_BGR2GRAY)
     thresh_image = cv2.adaptiveThreshold(gray_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2)
