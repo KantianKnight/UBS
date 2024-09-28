@@ -29,7 +29,8 @@ def give_result():
 @app.route('/efficient-hunter-kazuma', methods=['POST'])
 def give_kazuma_result():
     data = request.get_json()
-    return kazuma.solution(data)
+    result = kazuma.solution(data)
+    return jsonify(result)
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()

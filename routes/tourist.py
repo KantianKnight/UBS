@@ -106,6 +106,10 @@ times = {
     "Toei Oedo Line": 1
 }
 
+def solution(data):
+    print('hi')
+    
+
 # Example Usage
 data = {
     "locations": {
@@ -120,4 +124,4 @@ data = {
     "startingPoint": "Yoyogi-uehara",
     "timeLimit": 480
 }
-
+solution(data)
