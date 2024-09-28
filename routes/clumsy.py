@@ -1,5 +1,6 @@
 import json
 import difflib
+from flask import Response
 def find_closest_match(dictionary, mistypes):
     closest_matches = []
     for mistype in mistypes:
@@ -17,10 +18,10 @@ def solution(data):
     final = []
     count = 0
     for item in data:
-        if count >= 1:
-            mistypes = item['mistypes']
-            final.append({'corrections': ["hello" for _ in range(len(mistypes))]})
-            continue
+        # if count >= 1:
+        #     mistypes = item['mistypes']
+        #     final.append({'corrections': ["hello" for _ in range(len(mistypes))]})
+        #     continue
         dictionary = item['dictionary']
         mistypes = item['mistypes']
         closest_matches = find_closest_match(dictionary, mistypes)
@@ -28,5 +29,5 @@ def solution(data):
         result_temp['corrections'] = closest_matches
         final.append(result_temp)
         count += 1
-    return json.dumps(final)
+    return Response(json.dumps(final),content_type='application/json')
 
