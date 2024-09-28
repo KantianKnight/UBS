@@ -2,7 +2,7 @@ import logging
 import socket
 from flask import request
 
-from routes import app, digital_colony, kazuma, solve_the_wordle
+from routes import app, digital_colony, kazuma, solve_the_wordle, klotski
 from flask import Flask, request, jsonify
 
 
@@ -29,6 +29,12 @@ def give_kazuma_result():
     data = request.get_json()
     result = kazuma.solution(data)
     return jsonify(result)
+
+@app.route('/klotski', methods=['POST'])
+def get_result():
+    data = request.get_json()
+    return klotski.solution(data)
+
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
