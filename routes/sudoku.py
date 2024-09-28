@@ -7,10 +7,9 @@ import easyocr
 from flask import jsonify
 from PIL import Image
 import io
-# import keras_ocr
 import easyocr
 
-def main(data):
+def solution(data):
     # parsed_data = json.loads(data)
     parsed_data = data
     id = parsed_data["id"]
@@ -216,13 +215,13 @@ def main(data):
         "sum": int(sum)  # Ensure sum is a Python int
     }
     
-    print(output)
+    # print(output)
     return output
 
-def solution(data):
-    results = []
-    for i in range(len(data)):
-        sudokuI = data[i]
-        results.append(main(sudokuI))
-    print(results)
-    return results
+# def solution(data):
+#     results = []
+#     for i in range(len(data)):
+#         sudokuI = data[i]
+#         results.append(main(sudokuI))
+#     print(results)
+#     return results

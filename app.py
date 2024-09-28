@@ -34,8 +34,9 @@ def default_route():
 @app.route('/sudoku', methods=['POST'])
 def solve_sudoku():
     data = request.get_json()
+    return 1
     # return sudoku.solution(data)
-    return jsonify(sudoku.solution(data))
+    # return jsonify(sudoku.solution(data))
     # return sudoku.solution(data)
 
 # @app.route('/klotski', methods=['POST'])
