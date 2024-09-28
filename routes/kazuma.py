@@ -36,8 +36,7 @@ def solution(data):
             j = i
             while (dp[j-1][2] == dp[j-2][2]) and j > 1:
                 j -= 1
-            # print(i, j)
-            if j <= 2:
+            if dp[j-1][2] == 0:
                 v1 = m[i] - query_tree(tree, 1, 0, n-1, 0, i-1)
             else:
                 if j > i-2:
@@ -50,7 +49,7 @@ def solution(data):
             v2 = dp[i-1][2]
             dp.append((v1, v2, max(v1, v2)))
 
-        # print(dp)
+        print(dp)
         return dp[-1][2]
     
     results = []
