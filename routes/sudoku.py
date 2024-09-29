@@ -3,13 +3,13 @@ import base64
 import gzip
 import cv2
 import numpy as np
-# import easyocr
+import easyocr
 from flask import jsonify
 from PIL import Image
 import io
 # import pytesseract
 # from keras.models import load_model
-import app
+# import app
 import pickle
 # Load the pre-trained easyocr reader from a pickle file
 
@@ -121,7 +121,9 @@ def solution(data):
     # Loop through each cell in the grid_sizexgrid_size grid
     # reader = easyocr.Reader(['en'])
     # reader = get_easyocr_reader()
-    reader = app.reader
+    # reader = app.reader
+    with open('routes/easyocr_reader.pkl', 'rb') as f:
+        reader = pickle.load(f)
 
     # Use a pre-trained deep learning model to extract the number from the cell
     # For example, using a pre-trained digit recognition model from Keras

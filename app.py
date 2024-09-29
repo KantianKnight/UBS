@@ -2,17 +2,13 @@ import logging
 import socket
 from flask import request
 import json
-import pickle
-import easyocr
+# import pickle
+# import easyocr
 # from routes import math_colony, solve_the_wordle, klotski, bugp2, bugp1, kazuma
 from routes import app, clumsy, sudoku#, dodge_bullet
 from flask import Flask, request, jsonify
 
 logger = logging.getLogger(__name__)
-
-global reader
-with open('routes/easyocr_reader.pkl', 'rb') as f:
-    reader = pickle.load(f)
 
 @app.route('/', methods=['GET'])
 def default_route():
